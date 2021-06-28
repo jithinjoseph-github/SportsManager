@@ -1,3 +1,3 @@
 deploy:
     script:
-        - git ftp init -u "$CAKE_FTP_USER" -p "$CAKE_FTP_PWD" "ftp://apps.cakephp.jjcreations.xyz/sportsmanager/"
+        - git ftp push -u "$CAKE_FTP_USER" -p "$CAKE_FTP_PWD" "ftp://apps.cakephp.jjcreations.xyz/sportsmanager/"
