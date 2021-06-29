@@ -60,13 +60,13 @@ class AppController extends Controller
             ],
         ]);
         if ($this->Auth->user('role') === 0) {
-            $this->layout = 'manager';
+            $this->viewBuilder()->setLayout('manager');
         } else if ($this->Auth->user('role') === 1) {
-            $this->layout = 'organizer';
+            $this->viewBuilder()->setLayout('organizer');
         } else if ($this->Auth->user('role') === 2) {
-            $this->layout = 'coach';
+            $this->viewBuilder()->setLayout('coach');
         } else {
-            $this->layout = 'default';
+            $this->viewBuilder()->setLayout('default');
         }
         
         /*
