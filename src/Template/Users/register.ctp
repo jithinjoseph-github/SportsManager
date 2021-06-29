@@ -3,7 +3,7 @@ $this->layout = 'login_register';
 ?>
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <b>Sports Manager</b>
     </div>
 
     <div class="card">

@@ -4,7 +4,7 @@ $this->layout = 'login_register';
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <b>Sports Manager</b>
     </div>
     <!-- /.login-logo -->
     <?= $this->Flash->render('auth') ?>
