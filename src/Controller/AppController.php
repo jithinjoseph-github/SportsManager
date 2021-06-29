@@ -68,7 +68,10 @@ class AppController extends Controller
         } else {
             $this->viewBuilder()->setLayout('default');
         }
-        
+
+        if (!$this->Auth->user()) {
+            $this->Auth->setConfig('authError', false);
+        }
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3/en/controllers/components/security.html
