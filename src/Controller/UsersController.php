@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,43 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['register', 'logout']);
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            } else {
+            $this->Flash->error(__('Invalid email or password, try again'));
+            }
+        }
+    }
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    public function register()
+    {
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Account Created Successfully.'));
+
+                return $this->redirect('/');
+            }
+            $this->Flash->error(__('Account Creation Failed. Please, try again.'));
+        }
+        $this->set(compact('user'));
+    }
     /**
      * Index method
      *

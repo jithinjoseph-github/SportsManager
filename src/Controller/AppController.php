@@ -45,7 +45,30 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+        ]);
+        if ($this->Auth->user('role') === 0) {
+            $this->layout = 'manager';
+        } else if ($this->Auth->user('role') === 1) {
+            $this->layout = 'organizer';
+        } else if ($this->Auth->user('role') === 2) {
+            $this->layout = 'coach';
+        } else {
+            $this->layout = 'default';
+        }
+        
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3/en/controllers/components/security.html

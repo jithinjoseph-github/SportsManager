@@ -36,5 +36,9 @@ class AppView extends View
      */
     public function initialize()
     {
+        $this->Form->setTemplates([
+            'inputContainer' => '{{content}}',
+            'label' => false
+        ]);
     }
 }
